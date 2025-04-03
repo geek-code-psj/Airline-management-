@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyVoyage - Modern Airline Management</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="main.js"></script> 
+</head>
+<body>
+    <!-- Animated Navigation Bar -->
+    <nav class="glass-nav">
+        <div class="logo">
+            <i class="fas fa-plane"></i>
+            <span>SkyVoyage</span>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="#">Book</a>
+            <a href="#">My Trips</a>
+            <a href="#">Offers</a>
+            <div class="user-dropdown">
+                <img src="images/user-avatar.png" alt="User" class="user-avatar">
+                <div class="dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Settings</a>
+                    <a href="#">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Search -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Where will you fly today?</h1>
+            <div class="search-container">
+                <div class="search-tabs">
+                    <button class="active">Round Trip</button>
+                    <button>One Way</button>
+                    <button>Multi-City</button>
+                </div>
+                <div class="search-form">
+                    <div class="input-group">
+                        <label>From</label>
+                        <input type="text" placeholder="City or Airport" id="origin" autocomplete="off">
+                        <div class="airport-suggestions" id="origin-suggestions"></div>
+                    </div>
+                    <button class="swap-btn"><i class="fas fa-exchange-alt"></i></button>
+                    <div class="input-group">
+                        <label>To</label>
+                        <input type="text" placeholder="City or Airport" id="destination" autocomplete="off">
+                        <div class="airport-suggestions" id="destination-suggestions"></div>
+                    </div>
+                    <div class="input-group">
+                        <label>Departure</label>
+                        <input type="date" id="departure-date">
+                    </div>
+                    <div class="input-group">
+                        <label>Return</label>
+                        <input type="date" id="return-date">
+                    </div>
+                    <div class="input-group">
+                        <label>Travelers</label>
+                        <div class="travelers-select">
+                            <span id="travelers-display">1 Adult</span>
+                            <i class="fas fa-chevron-down"></i>
+                            <div class="travelers-dropdown">
+                                <div class="traveler-type">
+                                    <span>Adults</span>
+                                    <div class="counter">
+                                        <button class="decrement">-</button>
+                                        <span class="count">1</span>
+                                        <button class="increment">+</button>
+                                    </div>
+                                </div>
+                                <div class="traveler-type">
+                                    <span>Children</span>
+                                    <div class="counter">
+                                        <button class="decrement">-</button>
+                                        <span class="count">0</span>
+                                        <button class="increment">+</button>
+                                    </div>
+                                </div>
+                                <div class="traveler-type">
+                                    <span>Infants</span>
+                                    <div class="counter">
+                                        <button class="decrement">-</button>
+                                        <span class="count">0</span>
+                                        <button class="increment">+</button>
+                                    </div>
+                                </div>
+                                <div class="traveler-type">
+                                    <span>Class</span>
+                                    <select>
+                                        <option>Economy</option>
+                                        <option>Premium Economy</option>
+                                        <option>Business</option>
+                                        <option>First Class</option>
+                                    </select>
+                                </div>
+                                <button class="apply-btn">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="search-btn">Search Flights</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personalized Recommendations -->
+    <section class="recommendations">
+        <h2>Recommended for You</h2>
+        <div class="recommendation-cards">
+            <!-- Dynamically loaded from JS -->
+        </div>
+    </section>
+
+    <!-- Flight Search Results (Initially hidden) -->
+    <section class="flight-results" id="flight-results">
+        <div class="results-header">
+            <h2>Available Flights</h2>
+            <div class="sort-filter">
+                <select id="sort-by">
+                    <option value="price-asc">Price (Low to High)</option>
+                    <option value="price-desc">Price (High to Low)</option>
+                    <option value="duration-asc">Duration (Shortest)</option>
+                    <option value="departure-asc">Departure (Earliest)</option>
+                </select>
+                <button class="filter-btn"><i class="fas fa-filter"></i> Filters</button>
+            </div>
+        </div>
+        <div class="flight-cards" id="flight-cards">
+            <!-- Dynamically loaded from JS -->
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="booking-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="booking-steps">
+                <div class="step active" data-step="1">
+                    <span>1</span>
+                    <p>Flight Details</p>
+                </div>
+                <div class="step" data-step="2">
+                    <span>2</span>
+                    <p>Passenger Info</p>
+                </div>
+                <div class="step" data-step="3">
+                    <span>3</span>
+                    <p>Seat Selection</p>
+                </div>
+                <div class="step" data-step="4">
+                    <span>4</span>
+                    <p>Payment</p>
+                </div>
+                <div class="step" data-step="5">
+                    <span>5</span>
+                    <p>Confirmation</p>
+                </div>
+            </div>
+            <div class="booking-content">
+                <!-- Dynamically loaded based on step -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
